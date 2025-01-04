@@ -1,0 +1,125 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+    background: linear-gradient(120deg, #2e3131 0%, #050506 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container {
+    width: 100%;
+    padding: 20px;
+}
+
+.login-box {
+    background: rgb(202, 203, 203);
+    border-radius: 10px;
+    padding: 40px;
+    max-width: 400px;
+    margin: 0 auto;
+    box-shadow: 0 5px 15px rgba(155, 184, 172, 0.737);
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #131212;
+    font-size: 24px;
+}
+
+.input-group {
+    position: relative;
+    margin-bottom: 30px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 10px 0;
+    font-size: 16px;
+    color: #161616;
+    border: none;
+    /* 移除输入框的默认边框 */
+    border-bottom: 1px solid #615d5d;
+    /* 为输入框添加 1px 的底部边框 */
+    outline: none;
+    background: transparent;
+}
+
+.input-group label {
+    position: absolute;
+    top: 10px;
+    left: 0;
+    font-size: 16px;
+    color: #666;
+    pointer-events: none;
+    /* 使标签不接收鼠标事件，点击标签时会直接聚焦到输入框 */
+    transition: 0.3s ease all;
+    /* 为按钮的背景颜色添加 0.3 秒的平滑过渡效果 */
+}
+
+.input-group input:focus ~ label,
+/* 选择当输入框聚焦时的标签 */
+.input-group input:valid ~ label {
+    /* 选择当输入框内容有效时的标签 */
+    top: -20px;
+    font-size: 14px;
+    color: #514678;
+}
+
+.input-group input:focus {
+    border-bottom-color: #514678;
+    /* 将输入框的底部边框颜色设置为蓝色 */
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    background: #514678;
+    color: rgb(143, 136, 136);
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    /* 将鼠标指针设置为手形，表示按钮可点击 */
+    transition: background 0.3s;
+    /* 为按钮的背景颜色添加 0.3 秒的平滑过渡效果 */
+}
+
+button a {
+    text-decoration: none;
+    color: rgb(173, 171, 171);
+}
+
+button:hover {
+    background: #2d1a46;
+}
+
+.links {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.links a {
+    color: #514678;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.links a:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 480px) {
+    .login-box {
+        padding: 30px 20px;
+    }
+    /* 在屏幕宽度小于或等于 480px 时，为登录框添加 30px 上下和 20px 左右的内边距 */
+} 
