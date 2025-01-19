@@ -1,0 +1,752 @@
+:root {
+    --primary-gradient: linear-gradient(135deg, #2e3131 0%, #161618 50%, #050506 100%);
+    --section-spacing: 6rem;
+    --border-radius: 20px;
+    --primary-color: #624a6e; /* 主色调 */
+    --text-color: #f6f2f2; /* 文本颜色 */
+    --background-color: #101112; /* 背景颜色 */
+    --card-background: rgb(62, 61, 61); /* 卡片背景颜色 */
+    --card-shadow: rgba(42, 42, 42, 0.1); /* 卡片阴影颜色 */
+    --highlight-color: #463d5e; /* 高亮颜色 */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--background-color);
+}
+
+/* 导航栏样式 */
+.nav {
+    position: fixed; /* 固定导航栏 */
+    top: 0;
+    width: 100%;
+    padding: 1rem 5%; /* 在导航栏的上下方留出1rem的空间，1rem相当于16px */
+    /* 在导航栏的左右两侧留出父元素宽度5%的空间 */
+    background: rgba(50, 50, 50, 0.9);
+    backdrop-filter: blur(10px); /* 应用一个10像素的模糊效果到导航栏的背景 */
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08); /* 表示添加一个阴影效果，水平偏移20px，垂直偏移15px，颜色为黑色，不透明度为8% */
+    display: flex;
+    justify-content: space-between; /* 在弹性盒子布局中，将子元素在主轴上均匀分布，第一个子元素在起始位置，最后一个子元素在结束位置 */
+    align-items: center;
+    z-index: 1000; /* 设置导航栏的堆叠顺序为1000，确保它位于其他元素之上 */
+}
+
+.nav-left img {
+    height: 45px;
+    border-radius: 8px; /* 为图片添加8像素的圆角，使其边缘变得圆润 */
+}
+
+.nav-right ul {
+    display: flex;
+    list-style: none; /* 移除列表项（<li>）前的圆点 */
+    gap: 2.5rem; /* 设置列表项之间的间距为2.5rem */
+}
+
+.nav-right li {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    position: relative; /* 将列表项的定位设置为相对定位，以便其子元素可以使用绝对定位相对于它进行定位 */
+}
+
+.nav-right a {
+    text-decoration: none; /* 移除超链接的下划线 */
+    color: white;
+    font-weight: 500;
+    font-size: 1.05rem;
+    transition: all 0.5s ease; /* 0.3秒的过渡效果，过渡方式为ease（平滑过渡） */
+}
+
+.nav-right .iconfont {
+    color: #555;
+    font-size: 1.2rem;
+    transition: all 0.5s ease;
+}
+
+.nav-right li::after {
+    /* ::after 是一个伪元素，用于在选定元素的内容之后插入额外的内容或样式 */
+    content: ''; /* 这个是伪元素的必需属性，用于定义插入的内容 */
+    /* 这里表示不插入任何文本内容，而是生成一个空的元素 */
+    position: absolute;
+    bottom: -5px; /* 将伪元素定位在<li>元素的底部下方5像素处 */
+    left: 0; /* 将伪元素定位在<li>元素的左侧 */
+    width: 0; /* 初始宽度为0，表示伪元素不可见 */
+    height: 2px;
+    background: #545455;
+    transition: width 0.3s ease;
+}
+
+.nav-right li:hover::after {
+    width: 100%; /* 设置伪元素的宽度为100%，使其从左侧扩展到右侧 */
+}
+
+.nav-right li:hover .iconfont,
+.nav-right li:hover a {
+    color: #545455;
+    transform: translateY(-2px);
+}
+
+/* 头部样式 */
+.about-header {
+    min-height: 100vh; /* 设置头部的最小高度为视口高度的100%，确保头部占据整个屏幕高度 */
+    background: var(--primary-gradient); /* 使用之前定义的--primary-gradient变量作为背景，应用线性渐变 */
+    padding: 8rem 2rem 6rem; /* 调整 padding-bottom 为 6rem */
+    position: relative;
+    overflow: hidden; /* 隐藏溢出内容，防止内容超出容器 */
+}
+
+.header-content {
+    max-width: 1200px;
+    margin: 0 auto; /* 左右外边距为自动，使内容居中 */
+    display: grid; /* 使用网格布局 */
+    grid-template-columns: 1fr 1fr; /* 将容器分为两列，每列宽度相等 */
+    gap: 4rem; /* 列之间的间距为4rem */
+    align-items: center;
+}
+
+.header-text {
+    color: white;
+}
+
+.header-text h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+}
+
+.highlight {
+    color: var(--highlight-color);
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    opacity: 0.9; /* 不透明度为0.9，使文本稍微透明 */
+    margin-bottom: 2rem;
+}
+
+.header-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 将容器分为三列，每列宽度相等 */
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.stat-item {
+    text-align: center;
+    padding: 1.5rem;
+    background: rgba(104, 104, 104, 0.1);
+    border-radius: var(--border-radius);
+    backdrop-filter: blur(10px); /* 应用背景模糊效果，模糊半径为10px */
+}
+
+.stat-number {
+    display: block; /* 元素显示为块级元素 */
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+.header-image {
+    position: relative;
+}
+
+.image-container {
+    position: relative;
+    width: 400px;
+    height: 400px;
+    margin: 0 auto;
+}
+
+.image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* 图像覆盖整个容器，保持比例 */
+    border-radius: var(--border-radius);
+    position: relative;
+    z-index: 2; /* 设置堆叠顺序为2，确保图像在装饰元素之上 */
+}
+
+.image-decoration {
+    position: absolute;
+    top: -20px;
+    right: -20px;
+    bottom: -20px;
+    left: -20px;
+    border: 2px solid rgba(112, 109, 109, 0.381); /* 设置装饰元素的位置，使其超出容器边界20px */
+    border-radius: var(--border-radius);
+    z-index: 1; /* 设置堆叠顺序为1，确保装饰元素在图像之下 */
+}
+
+/* 调整 scroll-indicator 的位置 */
+.scroll-indicator {
+    position: absolute;
+    bottom: 2rem; /* 调整到 header 底部 */
+    left: 50%;
+    transform: translateX(-50%); /* 使用变换将元素水平居中 */
+    color: rgb(254, 251, 251);
+    text-align: center;
+    animation: bounce 2s infinite; /* 应用名为bounce的动画，持续时间为2秒，无限循环 */
+}
+
+.scroll-indicator i {
+    display: block;
+    margin-top: 0.5rem;
+    font-size: 1.5rem;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateX(-50%) translateY(0);
+    }
+    40% {
+        transform: translateX(-50%) translateY(-20px);
+    }
+    60% {
+        transform: translateX(-50%) translateY(-10px);
+    }
+}
+
+/* 背景部分 */
+.bgc-section {
+    padding: var(--section-spacing) 2rem; /* 设置内边距 */
+    /* var(--section-spacing)表示顶部和底部的间距，左右内边距为 2rem */
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 4rem;
+    color: var(--text-color);
+    position: relative;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -1rem; /* 将装饰线定位在标题下方 1rem 处 */
+    left: 50%; /* 将装饰线的左侧定位在标题的中间 */
+    transform: translateX(-50%); /* 将装饰线水平居中 */
+    width: 60px;
+    height: 3px;
+    background: var(--primary-color);
+}
+
+.bgc-grid1 {
+    display: grid;
+    grid-template-columns: 2fr 1fr; /* 将容器分为两列，第一列占2份宽度，第二列占1份宽度 */
+    gap: 4rem;
+    max-width: 1200px;
+    margin: 0 auto; /* 容器水平居中 */
+}
+
+.bgc-text p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-bottom: 1.5rem; /* 设置段落底部外边距为 1.5rem，使段落之间有足够的间距 */
+    color: var(--text-color);
+}
+
+.bgc-quote {
+    display: flex;
+    align-items: center;
+}
+
+.bgc-quote blockquote {
+    font-size: 1.5rem;
+    font-style: italic; /* 引用文本为斜体 */
+    color: var(--highlight-color);
+    position: relative;
+    padding: 2rem;
+    border-left: 4px solid var(--primary-color); /* 在引用内容的左侧添加一条边框 */
+    background: rgba(218, 224, 221, 0.92);
+    border-radius: 10px; /* 引用内容的圆角半径为 10px */
+}
+
+/* 团队奖项 */
+.s-section {
+    padding: var(--section-spacing) 2rem;
+    background: var(--background-color);
+}
+
+.s-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.s-category {
+    background: var(--card-background);
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    box-shadow: 0 10px 30px var(--card-shadow);
+    transition: transform 0.3s ease; /* 变换效果的过渡时间为 0.3s，缓动效果为 ease */
+}
+
+.s-category:hover {
+    transform: translateY(-10px); /* 当用户将鼠标悬停在技能分类上时，卡片会向上移动10px */
+}
+
+.s-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.s-header i {
+    font-size: 2rem;
+    color: var(--primary-color);
+    margin-right: 1rem; /* 设置图标右侧外边距为 1rem，与标题保持距离 */
+}
+
+.s-meter {
+    height: 6px;
+    background: #e5e7eb;
+    border-radius: 3px;
+    margin: 1.5rem 0;
+    overflow: hidden;
+}
+
+.meter-fill {
+    height: 100%;
+    background: var(--primary-color);
+    transition: width 1.5s ease;
+}
+
+.s-list {
+    list-style: none; /* 移除列表的默认样式（如项目符号） */
+    padding: 0; /* 移除列表的内边距 */
+}
+
+.s-list li {
+    display: flex;
+    align-items: center;
+    margin: 0.8rem 0;
+    color: var(--text-color);
+}
+
+.s-list i {
+    color: var(--primary-color);
+    margin-right: 0.5rem;
+}
+
+/* 现阶段所处 */
+.j-section {
+    padding: var(--section-spacing) 2rem;
+}
+
+.j-timeline {
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.j-item {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.j-date {
+    text-align: right;
+    font-weight: 600;
+    color: var(--primary-color);
+    padding-top: 0.5rem;
+}
+
+.j-content {
+    position: relative;
+    padding: 2rem;
+    background: var(--card-background);
+    border-radius: var(--border-radius);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    color:white;
+}
+
+.j-content::before {
+    content: '';
+    position: absolute;
+    left: -10px;
+    top: 20px;
+    width: 20px;
+    height: 20px;
+    background: var(--primary-color);
+    border-radius: 50%;
+}
+
+.j-tags {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.j-tags span {
+    padding: 0.5rem 1rem;
+    background: #624a6e;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    color:white;
+}
+
+
+/* 个人奖项 */
+.a-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    /* 自动适应列数，每列最小宽度为 250px，最大为 1fr（等分剩余空间） */
+    gap: 2rem;
+    margin-top: 3rem;
+    margin-bottom: 10rem; /* 在个人奖项和成长时间线之间添加空隙 */
+}
+
+.a-card {
+    background: var(--card-background);
+    border-radius: var(--border-radius);
+    padding: 2rem;
+    text-align: center;
+    box-shadow: var(--card-shadow);
+    transition: transform 0.3s ease;
+}
+
+.a-card:hover {
+    transform: translateY(-10px);
+}
+
+.a-icon {
+    width: 80px;
+    height: 80px;
+    background: #624a6e;
+    border-radius: 50%;
+    /* 将图标设置为圆形 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+}
+
+.a-icon i {
+    font-size: 2.5rem;
+    color: var(--text-color);
+}
+
+/* 成长时间线 */
+.e-timeline {
+    max-width: 800px;
+    margin: 0 auto; /* 调整顶部外边距为 0，避免重复空隙 */
+    position: relative;
+}
+
+.e-timeline::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 100%;
+    background: #624a6e; /* 将垂直线颜色改为和圆点一样的颜色 */
+}
+
+.timeline-item {
+    margin-bottom: 3rem;
+    position: relative;
+}
+
+.timeline-dot {
+    width: 20px;
+    height: 20px;
+    background: #624a6e;
+    border-radius: 50%;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    /* left: 50% 和 transform: translateX(-50%)：将圆点水平居中 */
+}
+
+.timeline-content {
+    width: calc(50% - 50px);
+    /* 设置内容区域宽度为父容器宽度的一半减去 50px */
+    padding: 2rem;
+    background: var(--card-background);
+    border-radius: var(--border-radius);
+    box-shadow: var(--card-shadow);
+}
+
+.timeline-item:nth-child(odd) .timeline-content {
+    margin-left: auto;
+    /* 将奇数项的内容区域向右对齐 */
+}
+
+.timeline-date {
+    color: var(--primary-color);
+    font-weight: 600;
+    margin: 0.5rem 0;
+}
+
+.timeline-school {
+    font-size: 1.1rem;
+    color: var(--text-color);
+    margin-bottom: 1rem;
+}
+
+.timeline-details {
+    list-style: none;
+    padding: 0;
+}
+
+.timeline-details li {
+    margin: 0.5rem 0;
+    color: var(--text-color);
+    display: flex;
+    align-items: center;
+}
+
+.timeline-details li::before {
+    content: '•';
+    color: var(--primary-color);
+    margin-right: 0.5rem;
+}
+
+/* 喜欢部分 */
+.i-section {
+    padding: var(--section-spacing) 2rem;
+    background: var(--background-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 500px; /* 设置固定宽度 */
+    height: 500px; /* 设置固定高度，与宽度相同 */
+    margin: 0 auto; /* 居中 */
+    box-sizing: border-box; /* 确保 padding 不会影响宽高 */
+}
+
+.container {
+    max-width: 100%; /* 让容器适应父元素宽度 */
+    text-align: center; /* 内容居中 */
+}
+
+.section-title {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    color: var(--text-color);
+}
+
+.i-grid {
+    display: flex;
+    justify-content: center;
+}
+
+.i-card {
+    background: var(--card-background);
+    border-radius: var(--border-radius);
+    padding: 2rem;
+    text-align: center;
+    box-shadow: var(--card-shadow);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;/* 添加指针样式，表示可点击 */
+    width: 100%; /* 使卡片宽度适应容器 */
+}
+
+.i-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.i-card:active {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.i-icon {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.i-card h3 {
+    font-size: 1.5rem;
+    color: var(--text-color);
+    margin-bottom: 1rem;
+}
+
+.i-card p {
+    font-size: 1.1rem;
+    color: var(--text-color);
+    opacity: 0.8;
+    margin-bottom: 2rem;
+}
+
+.i-gallery {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+.i-gallery img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    /* 确保图片比例不变，裁剪多余部分 */
+    border-radius: var(--border-radius);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.i-gallery img:hover {
+    transform: scale(1.05);
+    /* 悬停时图片放大 */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    /* 悬停时图片阴影变大 */
+}
+
+/* 页脚 */
+.footer {
+    background: #131313;
+    border-top: 1px solid #222223; /* 为页脚添加上边框，宽度为 1px */
+    padding: 3rem 5%;
+    margin-top: 0;
+    color: #fff;
+}
+
+.footer-content {
+    display: flex; /* 弹性盒子布局 */
+    /* 让容器中的子元素能够以更简单的方式对齐、分布和调整大小，尤其是在不同屏幕尺寸和设备上 */
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto; /* 将元素水平居中，上下外边距为 0 */
+}
+
+.footer-left {
+    width: 100px; /* 限制父元素的宽度 */
+}
+
+.footer-left img {
+    height: 40px;
+    width: auto; /* 保持图片的宽高比 */
+    max-width: 100px; /* 设置最大宽度 */
+    border-radius: 4px; /* 为图片添加 4px 的圆角，使其边缘变得圆润 */
+}
+
+.footer-center {
+    flex-grow: 1; /* 设置元素在弹性盒子布局中占据剩余空间的比例为 1，使其自动扩展以填充可用空间 */
+    margin: 0 4rem;
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 2rem; /* 子元素之间的间距为 2rem */
+}
+
+.social-links a {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #fff;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-size: 0.95rem;
+}
+
+.social-links .iconfont {
+    font-size: 1.2rem;
+}
+
+.social-links a:hover {
+    color: #e0e0e0;
+    transform: translateY(-2px);
+}
+
+.footer-right .copyright {
+    color: #fff;
+    font-size: 0.9rem;
+}
+
+/* 响应式设计 */
+@media (max-width: 1024px) {
+    .header-content {
+        grid-template-columns: 1fr;
+        /* 将头部内容从多列布局改为单列布局 */
+        text-align: center;
+    }
+
+    .header-stats {
+        justify-content: center;
+    }
+
+    .s-grid {
+        grid-template-columns: repeat(2, 1fr);
+        /* 从多列布局改为两列布局 */
+    }
+
+    .i-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .bgc-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .j-item {
+        grid-template-columns: 1fr;
+        text-align: left;
+        /* 将文本内容左对齐 */
+    }
+
+    .j-date {
+        text-align: left;
+        margin-bottom: -1rem;
+    }
+
+    .s-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .header-text h1 {
+        font-size: 2.5rem;
+    }
+
+    .image-container {
+        width: 300px;
+        height: 300px;
+    }
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .e-timeline::before {
+        left: 0;
+        /* 将时间轴的竖线向左对齐 */
+    }
+
+    .timeline-dot {
+        left: 0;
+    }
+
+    .timeline-content {
+        width: calc(100% - 30px);
+        /* 将时间轴内容的宽度调整为 100% - 30px，以适应小屏幕 */
+        margin-left: 30px !important;
+        /* 将时间轴内容的左边距设置为 30px，并覆盖其他可能的样式 */
+    }
+
+    .i-grid {
+        grid-template-columns: 1fr;
+    }
+} 

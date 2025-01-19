@@ -4,6 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>金泰亨</title>
+    <script>
+        // 检查用户是否已登录
+        const loggedInUser = localStorage.getItem('loggedInUser');
+        if (!loggedInUser) {
+            // 记录当前页面的 URL
+            localStorage.setItem('redirectUrl', window.location.href);
+            // 跳转到登录页面
+            window.location.href = 'login.html';
+        }
+    </script>
     <link rel="stylesheet" href="index.css">
     <link rel="stylesheet" href="https://at.alicdn.com/t/c/font_4800139_ob57fl2qvk.css">
 </head>
@@ -15,11 +25,11 @@
         </div>
         <div class="nav-right">
             <ul>
-                <li><i class="iconfont icon-shouye"></i><a href="#home">首页</a></li>
-                <li><i class="iconfont icon-guanyu"></i><a href="#about">关于他</a></li>
-                <li><i class="iconfont icon-yinle"></i><a href="#works">他的作品</a></li>
-                <li><i class="iconfont icon-yundongyuleshebei"></i><a href="#life">他的生活</a></li>
-                <li><i class="iconfont icon-lianxiren"></i><a href="#contact">联系我</a></li>
+                <li><i class="iconfont icon-shouye"></i><a href="index.html">首页</a></li>
+                <li><i class="iconfont icon-guanyu"></i><a href="about.html">关于他</a></li>
+                <li><i class="iconfont icon-yinle"></i><a href="works.html">他的作品</a></li>
+                <li><i class="iconfont icon-yundongyuleshebei"></i><a href="life.html">他的生活</a></li>
+                <li><i class="iconfont icon-lianxiren"></i><a href="contact.html">联系我</a></li>
             </ul>
         </div>
      </nav> 

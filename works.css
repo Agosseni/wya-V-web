@@ -1,0 +1,436 @@
+:root {
+    --primary-gradient: linear-gradient(135deg, #2e3131 0%, #161618 50%, #050506 100%);
+    --section-spacing: 6rem;
+    --border-radius: 20px;
+    --primary-color: #624a6e;
+    --text-color: #f6f2f2;
+    --background-color: #101112;
+    --card-background: rgb(62, 61, 61);
+    --card-shadow: rgba(42, 42, 42, 0.1);
+    --highlight-color: #463d5e;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--background-color);
+}
+
+.nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 1rem 5%;
+    background: rgba(50, 50, 50, 0.9);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+}
+
+.nav-left img {
+    height: 45px;
+    border-radius: 8px;
+}
+
+.nav-right ul {
+    display: flex;
+    list-style: none;
+    gap: 2.5rem;
+}
+
+.nav-right li {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    position: relative;
+}
+
+.nav-right a {
+    text-decoration: none;
+    color: var(--text-color);
+    font-weight: 500;
+    font-size: 1.05rem;
+    transition: all 0.5s ease;
+}
+
+.nav-right .iconfont {
+    color: #555;
+    font-size: 1.2rem;
+    transition: all 0.5s ease;
+}
+
+.nav-right li::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: #545455;
+    transition: width 0.3s ease;
+}
+
+.nav-right li:hover::after {
+    width: 100%;
+}
+
+.nav-right li:hover .iconfont,
+.nav-right li:hover a {
+    color: #545455;
+    transform: translateY(-2px);
+}
+
+.w-header {
+    min-height: 60vh;
+    background: var(--primary-gradient);
+    position: relative;
+    overflow: hidden;
+    padding: 8rem 2rem 4rem;
+}
+
+.header-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    color: var(--text-color);
+}
+
+.glitch {
+    font-size: 4rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    position: relative;
+    text-shadow: 0.05em 0 0 #1e6a4d, -0.03em -0.04em 0 #6a5a8c, 0.025em 0.04em 0 #00ffff;
+    animation: glitch 725ms infinite;
+}
+
+.header-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.cube {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    background: rgba(255, 255, 255, 0.1);
+    animation: cube 10s linear infinite;
+    transform-origin: center;
+    /* 设置变换原点为中心 */
+}
+
+.filter-tabs {
+    margin-top: 3rem;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    /* 允许子元素换行 */
+}
+
+.filter-btn {
+    padding: 0.8rem 1.5rem;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    background: transparent;
+    color: var(--text-color);
+    border-radius: 30px;
+    cursor: pointer;
+    /* 鼠标悬停时显示指针 */
+    transition: all 0.3s ease;
+}
+
+.filter-btn.active,
+.filter-btn:hover {
+    background: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.w-content {
+    padding: var(--section-spacing) 2rem;
+    background: var(--background-color);
+}
+
+.w-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    /* 自动调整列数，每列最小宽度为320px，最大为1fr（等分剩余空间） */
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.w-card {
+    position: relative;
+    background: var(--card-background);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: 0 4px 20px var(--card-shadow);
+    transition: all 0.3s ease;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    /* 垂直排列子元素 */
+}
+
+.w-card:hover {
+    transform: translateY(-10px);
+}
+
+.w-image {
+    position: relative;
+    overflow: hidden;
+    padding-top: 56.25%;
+    /* 设置顶部内边距为56.25%，用于保持16:9的宽高比 */
+}
+
+.w-image img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.w-card:hover .w-image img {
+    transform: scale(1.1);
+    /* 鼠标悬停时图片放大1.1倍 */
+}
+
+.w-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+.w-card:hover .w-overlay {
+    opacity: 1;
+}
+
+.w-links {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.w-link {
+    width: 50px;
+    height: 50px;
+    background: var(--primary-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-color);
+    text-decoration: none;
+    transform: translateY(20px);
+    transition: all 0.3s ease;
+}
+
+.w-link .iconfont {
+    font-size: 1.5rem; /* 调整图标大小 */
+    margin-left: 0; /* 确保图标居中 */
+}
+
+.w-card:hover .w-link {
+    transform: translateY(0);
+    /* 鼠标悬停时恢复到原始位置 */
+}
+
+.w-info {
+    padding: 2rem;
+    text-align: center;
+}
+
+.w-info h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--text-color);
+}
+
+.w-info p {
+    color: #f5f8fc;
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+}
+
+.w-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    justify-content: center;
+}
+
+.w-tags span {
+    padding: 0.5rem 1rem;
+    background: var(--highlight-color);
+    border-radius: 20px;
+    font-size: 0.9rem;
+    color: var(--text-color);
+}
+
+.w-info a.w-link {
+    display: inline-block;
+    /* 设置为内联块元素 */
+    padding: 0.8rem 1.5rem;
+    background: var(--primary-color);
+    border-radius: 30px;
+    color: var(--text-color);
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.w-info a.w-link:hover {
+    background: var(--highlight-color);
+}
+
+.footer {
+    background: var(--background-color);
+    border-top: 1px solid #222223;
+    padding: 3rem 5%;
+    margin-top: 0;
+    color: var(--text-color);
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-left {
+    width: 100px;
+}
+
+.footer-left img {
+    height: 40px;
+    width: auto;
+    max-width: 100px;
+    border-radius: 4px;
+}
+
+.footer-center {
+    flex-grow: 1;
+    margin: 0 4rem;
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.social-links a {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-color);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-size: 0.95rem;
+}
+
+.social-links .iconfont {
+    font-size: 1.2rem;
+}
+
+.social-links a:hover {
+    color: #e0e0e0;
+    transform: translateY(-2px);
+}
+
+.footer-right .copyright {
+    color: var(--text-color);
+    font-size: 0.9rem;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .glitch {
+        font-size: 2.5rem;
+    }
+
+    .modal-content {
+        width: 95%;
+        padding: 1rem;
+    }
+
+    .project-gallery {
+        flex-direction: column;
+    }
+} 
+
+/* 添加项目卡片动画 */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+        /* 动画开始时，元素的透明度为0（完全透明），并且元素在垂直方向上向下移动20px */
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+        /* 动画结束时，元素的透明度变为1（完全不透明），并且元素回到原始位置（垂直方向上没有偏移） */
+    }
+}
+
+/* 添加故障艺术文字动画 */
+@keyframes glitch {
+    0% {
+        text-shadow: 0.05em 0 0 #1e6a4d, -0.03em -0.04em 0 #6a5a8c,
+                     0.025em 0.04em 0 #b19cd9;
+        /* 为文本添加阴影效果 */
+        /* 在不同的关键帧中发生变化，模拟出文字闪烁、偏移的效果 */
+    }
+    15% {
+        text-shadow: 0.05em 0 0 #1e6a4d, -0.03em -0.04em 0 #6a5a8c,
+                     0.025em 0.04em 0 #b19cd9;
+    }
+    16% {
+        text-shadow: -0.05em -0.025em 0 #1e6a4d, 0.025em 0.035em 0 #6a5a8c,
+                     -0.05em -0.05em 0 #b19cd9;
+    }
+    49% {
+        text-shadow: -0.05em -0.025em 0 #1e6a4d, 0.025em 0.035em 0 #6a5a8c,
+                     -0.05em -0.05em 0 #b19cd9;
+    }
+    50% {
+        text-shadow: 0.05em 0.035em 0 #1e6a4d, 0.03em 0 0 #6a5a8c,
+                     0 -0.04em 0 #b19cd9;
+    }
+    99% {
+        text-shadow: 0.05em 0.035em 0 #1e6a4d, 0.03em 0 0 #6a5a8c,
+                     0 -0.04em 0 #b19cd9;
+    }
+    100% {
+        text-shadow: -0.05em 0 0 #1e6a4d, -0.025em -0.04em 0 #6a5a8c,
+                     -0.04em -0.025em 0 #b19cd9;
+    }
+}

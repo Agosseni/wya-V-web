@@ -5,29 +5,55 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>登录</title>
     <link rel="stylesheet" href="登录&注册.css">
-    <link rel="stylesheet" href="https://at.alicdn.com/t/c/font_4800139_ob57fl2qvk.css">
 </head>
 <body>
     <div class="container">
         <div class="login-box">
-           <h2>登录</h2>
-           <form>
-            <div class="input-group">
-                <input type="text" required>
-                <!-- 属性表示该输入框为必填项，如果用户未填写，表单将无法提交 -->
-                <label>同户名</label>
-            </div>
-            <div class="input-group">
-                <input type="password" required>
-                <label>密码</label>
-            </div>
-            <button type="submit"><a href="index.html">登录</a></button>
-            <div class="links">
-                <a href="register.html">注册账号</a>
-                <a href="#">忘记密码？</a>
-            </div>
-           </form>
+            <h2>登录</h2>
+            <form id="loginForm">
+                <div class="input-group">
+                    <input type="text" id="loginUsername" required>
+                    <label>用户名</label>
+                </div>
+                <div class="input-group">
+                    <input type="password" id="loginPassword" required>
+                    <label>密码</label>
+                </div>
+                <button type="submit">登录</button>
+                <div class="links">
+                    <a href="register.html">注册账号</a>
+                    <a href="#">忘记密码？</a>
+                </div>
+            </form>
         </div>
     </div>
+
+    <script>
+        // 模拟用户数据库
+        const users = JSON.parse(localStorage.getItem('users')) || [];
+
+        // 登录逻辑
+        document.getElementById('loginForm').addEventListener('submit', (e) => {
+            e.preventDefault(); // 阻止表单默认提交行为
+
+            const username = document.getElementById('loginUsername').value; // 获取用户名
+            const password = document.getElementById('loginPassword').value; // 获取密码
+
+            // 检查用户是否存在
+            const user = users.find(u => u.username === username && u.password === password);
+            if (user) {
+                alert('登录成功！');
+                localStorage.setItem('loggedInUser', JSON.stringify(user)); // 保存登录状态
+
+                // 获取原本想访问的页面
+                const redirectUrl = localStorage.getItem('redirectUrl') || 'index.html';
+                localStorage.removeItem('redirectUrl'); // 清除记录的 URL
+                window.location.href = redirectUrl; // 跳转到原本想访问的页面
+            } else {
+                alert('用户名或密码错误，请注册后再登录！');
+                window.location.href = 'register.html'; // 跳转到注册页面
+            }
+        });
+    </script>
 </body>
 </html>

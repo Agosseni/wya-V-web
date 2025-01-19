@@ -1,4 +1,4 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -45,9 +45,7 @@ h2 {
     font-size: 16px;
     color: #161616;
     border: none;
-    /* 移除输入框的默认边框 */
     border-bottom: 1px solid #615d5d;
-    /* 为输入框添加 1px 的底部边框 */
     outline: none;
     background: transparent;
 }
@@ -59,15 +57,11 @@ h2 {
     font-size: 16px;
     color: #666;
     pointer-events: none;
-    /* 使标签不接收鼠标事件，点击标签时会直接聚焦到输入框 */
     transition: 0.3s ease all;
-    /* 为按钮的背景颜色添加 0.3 秒的平滑过渡效果 */
 }
 
 .input-group input:focus ~ label,
-/* 选择当输入框聚焦时的标签 */
 .input-group input:valid ~ label {
-    /* 选择当输入框内容有效时的标签 */
     top: -20px;
     font-size: 14px;
     color: #514678;
@@ -75,7 +69,6 @@ h2 {
 
 .input-group input:focus {
     border-bottom-color: #514678;
-    /* 将输入框的底部边框颜色设置为蓝色 */
 }
 
 button {
@@ -87,14 +80,7 @@ button {
     border-radius: 5px;
     font-size: 16px;
     cursor: pointer;
-    /* 将鼠标指针设置为手形，表示按钮可点击 */
     transition: background 0.3s;
-    /* 为按钮的背景颜色添加 0.3 秒的平滑过渡效果 */
-}
-
-button a {
-    text-decoration: none;
-    color: rgb(173, 171, 171);
 }
 
 button:hover {
@@ -121,5 +107,4 @@ button:hover {
     .login-box {
         padding: 30px 20px;
     }
-    /* 在屏幕宽度小于或等于 480px 时，为登录框添加 30px 上下和 20px 左右的内边距 */
-} 
+}
